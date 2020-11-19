@@ -39,3 +39,14 @@ EOF
     Environment = "Dev"
   }
 }
+
+# Create two EC2 instances
+resource "aws_instance" "dev-server" {
+  count         = 2
+  ami           = "ami-00ddb0e5626798373"
+  instance_type = "t2.micro"
+  key_name      = "Camfield-KP"
+  tags = {
+    Name = "hoist-internal-development"
+  }
+}
